@@ -3,9 +3,8 @@ import React, { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
 import * as Font from 'expo-font'
 import { Asset } from 'expo-asset'
-import LoggedOutNav from './navigator/LoggedOutNav'
 import { NavigationContainer } from '@react-navigation/native'
-import { Appearance, AppearanceProvider } from 'react-native-appearance'
+import LoggedOutNav from './navigator/LoggedOutNav'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -14,6 +13,7 @@ export default function App() {
     const fontsToLoad = [Ionicons.font]
     const fontPromises = fontsToLoad.map(font => Font.loadAsync(font))
     const imagesToLoad = [
+      require('./assets/logo.jpeg'),
       'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png',
     ]
     const imagePromises = imagesToLoad.map(image => Asset.loadAsync(image))
@@ -28,12 +28,10 @@ export default function App() {
       />
     )
   }
-  console.log('왜안나와?')
+
   return (
-    <AppearanceProvider>
-      <NavigationContainer>
-        <LoggedOutNav />
-      </NavigationContainer>
-    </AppearanceProvider>
+    <NavigationContainer>
+      <LoggedOutNav />
+    </NavigationContainer>
   )
 }
